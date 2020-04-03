@@ -18,14 +18,17 @@ const corsVal = {
       'http://localhost',
       'http://127.0.0.1:3000',
       'http://localhost:3000',
+      'https://product-notifier-client.herokuapp.com/',
     ],
     staging: [
       undefined,
       'http://localhost:3000',
+      'https://product-notifier-client.herokuapp.com/',
     ],
     production: [
       undefined,
       'http://localhost:3000',
+      'https://product-notifier-client.herokuapp.com/',
     ],
   },
 };
