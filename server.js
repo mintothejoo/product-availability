@@ -1,8 +1,8 @@
-import cors from 'cors';
-import fetch from 'node-fetch';
-import moment from 'moment';
-import bodyParser from 'body-parser';
-import express from 'express';
+var cors = require('cors');
+var fetch = require('node-fetch');
+var moment = require('moment');
+var bodyParser = require('body-parser');
+var express = require('express');
 const app = express()
 const serverURL = "https://www.bestbuy.ca/ecomm-api/availability/products?accept-language=en-CA&skus=14425777";
 var port = process.env.PORT || 3100;
