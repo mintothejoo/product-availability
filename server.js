@@ -4,7 +4,7 @@ var moment = require('moment');
 var bodyParser = require('body-parser');
 var express = require('express');
 const app = express()
-const serverURL = "https://www.bestbuy.ca/ecomm-api/availability/products?accept-language=en-CA&skus=14425777";
+const serverURL = "https://www.bestbuy.ca/ecomm-api/availability/products?accept=application%2Fvnd.bestbuy.standardproduct.v1%2Bjson&accept-language=en-CA&skus=14425777";
 var port = process.env.PORT || 3100;
 // let arr = [];
 // https://www.bestbuy.ca/ecomm-api/availability/products?accept-language=en-CA&skus=14425777
@@ -70,7 +70,6 @@ app.get('/', async (req, res) => {
     response = response.split("shipping");
     response = response[1];
     isNotAvailable = response.includes("NotAvailable") || response.includes("SoldOutOnline") || response.includes("Unknown");
-    // console.log(`${isNotAvailable ? 'Not Available' : 'AVAILABLE!!!!!!!!!!!'} --- updated: ${moment().format("MM DD hh:mm:ss")}`)
     str = `${isNotAvailable ? 'Not Available' : 'AVAILABLE!!!!!!!!!!!'} --- updated: ${moment().format("MM DD hh:mm:ss")}`;
   }
   await server();
