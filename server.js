@@ -18,16 +18,19 @@ const corsVal = {
       'http://localhost',
       'http://127.0.0.1:3000',
       'http://localhost:3000',
+      'http://localhost:3001',
       'https://product-notifier-client.herokuapp.com',
     ],
     staging: [
       undefined,
       'http://localhost:3000',
+      'http://localhost:3001',
       'https://product-notifier-client.herokuapp.com',
     ],
     production: [
       undefined,
       'http://localhost:3000',
+      'http://localhost:3001',
       'https://product-notifier-client.herokuapp.com',
     ],
   },
@@ -52,9 +55,15 @@ app.use(cors(corsOptions));
 
 
 app.get('/', async (req, res) => {
-  let str = '';
-  let isNotAvailable;
-  const server = async () => {
+  let str = [];
+  let isNotAvailable = [];
+  const links = [
+    "https://www.bestbuy.ca/en-ca/product/nintendo-switch-animal-crossing-new-horizons-edition/14425777",
+  ];
+  const location = [
+    "Best Buy Canada",
+  ];
+  const bestBuyCanada = async (index) => {
     let response = await fetch(serverURL, {
       headers: { 
         'Content-Type': 'application/vnd.api+json',
@@ -69,12 +78,13 @@ app.get('/', async (req, res) => {
   
     response = response.split("shipping");
     response = response[1];
-    isNotAvailable = response.includes("NotAvailable") || response.includes("SoldOutOnline") || response.includes("Unknown");
-    str = `${isNotAvailable ? 'Not Available' : 'AVAILABLE!!!!!!!!!!!'} --- updated: ${moment().format("MM DD hh:mm:ss")}`;
+    console.log(response);
+    isNotAvailable[index] = response.includes("NotAvailable") || response.includes("SoldOutOnline") || response.includes("Unknown");
+    // isNotAvailable[index] = false;
+    str[index] = `${isNotAvailable ? 'Not Available' : 'AVAILABLE!!!!!!!!!!!'} --- updated: ${moment().format("MMMM DD hh:mm:ss a")}`;
   }
-  await server();
-  res.send({ message: str, isNotAvailable });
-  // setInterval(server, 2000);
+  await bestBuyCanada(0);
+  res.send({ message: str, isNotAvailable, links, location });
 })
 
 app.listen(port, () => console.log(`app listening at http://localhost:${port}`))
