@@ -78,9 +78,7 @@ app.get('/', async (req, res) => {
   
     response = response.split("shipping");
     response = response[1];
-    console.log(response);
     isNotAvailable[index] = response.includes("NotAvailable") || response.includes("SoldOutOnline") || response.includes("Unknown");
-    // isNotAvailable[index] = false;
     str[index] = `${isNotAvailable ? 'Not Available' : 'AVAILABLE!!!!!!!!!!!'} --- updated: ${moment().format("MMMM DD hh:mm:ss a")}`;
   }
   await bestBuyCanada(0);
