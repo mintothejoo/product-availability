@@ -3,7 +3,7 @@ const moment = require('moment');
 const serverURL = "https://www.bestbuy.ca/ecomm-api/availability/products?accept-language=en-CA&skus=14425777";
 const express = require('express')
 const app = express()
-const port = 3100
+var port = process.env.PORT || 3000;
 // let arr = [];
 // https://www.bestbuy.ca/ecomm-api/availability/products?accept-language=en-CA&skus=14425777
 // https://rh.nexus.bazaarvoice.com/highlights/v3/1/thesourceca/108086956
